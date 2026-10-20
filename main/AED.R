@@ -83,4 +83,72 @@ pm25_mes %>%
 
 #Este gráfico de estacionalidad superpuesta (gg_season) permite comparar
 #el ciclo anual de las concentraciones de material particulado PM2.5 ($\mu g/m^3$)
-#mes a mes, agrupando los datos por cada estación de monitoreo de la red de calidad del aire.  
+#mes a mes, agrupando los datos por cada estación de monitoreo de la red de calidad del aire. 
+
+
+#---------------------------------------------------------------------
+#REVISADO POR: ANA ALDÁS
+#---------------------------------------------------------------------
+# GRÁFICO DE SUBSERIES
+
+# 1. ESTACIONARIEDAD: No
+# Algunas estaciones presentan cambios en sus niveles a lo largo
+# de los años, pero otras se mantienen relativamente estables
+
+# 2. TENDENCIA: No se observa una tendencia clara
+# Las concentraciones presentan aumentos y disminuciones
+# a lo largo de los años, sin una dirección constante
+
+# 3. ESTACIONALIDAD: Sí, mensual
+# Las estaciones Belisario, Centro y El Camal presentan
+# diferencias en sus promedios entre los meses del año
+
+# 4. CICLOS: NO
+# No se observan fluctuaciones prolongadas e irregulares
+# que permitan ver un comportamiento cíclico
+
+
+#---------------------------------------------------------------------
+# GRÁFICO DEL CICLO DIARIO
+
+# 1. ESTACIONARIEDAD: No
+# El gráfico muestra promedios por hora y no la evolución
+# cronológica de las series
+
+# 2. TENDENCIA: No
+# Los aumentos y disminuciones corresponden a las horas
+# del día y no a una tendencia de largo plazo
+
+# 3. ESTACIONALIDAD: Sí, diariA
+# Se observa un patrón horario, con un aumento de PM2.5
+# alrededor de las 7 de la mañana, especialmente en El Camal
+
+# 4. CICLOS: No
+# Las variaciones observadas corresponden al comportamiento
+# diario y no a fluctuaciones de duración irregular
+
+
+#---------------------------------------------------------------------
+# GRÁFICO DE ESTACIONALIDAD ANUAL
+
+# 1. ESTACIONARIEDAD: No
+# En varias estaciones se observan cambios en los niveles
+# promedio según el mes del año
+
+# 2. TENDENCIA: No
+# El gráfico compara los meses de distintos años,
+# pero no muestra una evolución cronológica continua
+
+# 3. ESTACIONALIDAD: Sí, anuaL
+# En Belisario, Centro y El Camal se observan concentraciones
+# menores a mitad del año y mayores hacia sus últimos meses.
+# Este comportamiento se repite en varios años
+
+# 4. CICLOS: No
+# Las fluctuaciones observadas corresponden principalmente
+# a patrones estacionales que se repiten cada año
+
+
+
+
+

@@ -7,11 +7,15 @@ library(here)
 library(readxl)
 library(readxl)
 
+#pm25 <- read_excel(
+ # "C:/Users/jazzd/OneDrive/Documentos/PM25/Data/PM2.5.xlsx",
+  #sheet = "LIMPIO",
+  #range = cell_cols("A:J"),
+  #col_types = c("date", rep("numeric", 9))
+#)
 pm25 <- read_excel(
-  "C:/Users/jazzd/OneDrive/Documentos/PM25/Data/PM2.5.xlsx",
-  sheet = "LIMPIO",
-  range = cell_cols("A:J"),
-  col_types = c("date", rep("numeric", 9))
+  here("data", "PM2.5.xlsx"),
+  sheet = "LIMPIO"
 )
 
 glimpse(pm25)
@@ -40,6 +44,13 @@ has_gaps(pm25_ts)      # TRUE esperado (hay huecos reales)
 pm25_ts %>% count_gaps() %>% arrange(desc(.n))   # los huecos más largos
 
 
+pm25_mes <- pm25_ts %>%
+  group_by_key() %>%
+  index_by(mes = yearmonth(FECHA)) %>%
+  summarise(n = sum(!is.na(pm25)), pm25 = mean(pm25, na.rm = TRUE)) %>%
+  mutate(cobertura = n / (days_in_month(as.Date(mes)) * 24),
+         pm25 = if_else(cobertura >= 0.75, pm25, NA_real_)) %>%
+  fill_gaps()
 
 #GRAFICOS
 #Evolución y Estacionalidad Mensual del PM2.5 por Estación de Monitoreo
@@ -72,4 +83,4 @@ pm25_mes %>%
 
 #Este gráfico de estacionalidad superpuesta (gg_season) permite comparar
 #el ciclo anual de las concentraciones de material particulado PM2.5 ($\mu g/m^3$)
-#mes a mes, agrupando los datos por cada estación de monitoreo de la red de calidad del aire. 
+#mes a mes, agrupando los datos por cada estación de monitoreo de la red de calidad del aire.  

@@ -7,11 +7,15 @@ library(here)
 library(readxl)
 library(readxl)
 
+#pm25 <- read_excel(
+ # "C:/Users/jazzd/OneDrive/Documentos/PM25/Data/PM2.5.xlsx",
+  #sheet = "LIMPIO",
+  #range = cell_cols("A:J"),
+  #col_types = c("date", rep("numeric", 9))
+#)
 pm25 <- read_excel(
-  "C:/Users/jazzd/OneDrive/Documentos/PM25/Data/PM2.5.xlsx",
-  sheet = "LIMPIO",
-  range = cell_cols("A:J"),
-  col_types = c("date", rep("numeric", 9))
+  here("data", "PM2.5.xlsx"),
+  sheet = "LIMPIO"
 )
 
 glimpse(pm25)

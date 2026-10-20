@@ -61,19 +61,19 @@ pm25_mes %>% gg_subseries(pm25)
 
 
 
-#Ciclo Diario Promedio de Concentración de PM2.5 por Estación de Monitoreo
+#Ciclo Diario Promedio de Concentracion de PM2.5 por Estación de Monitoreo
 pm25_ts %>% as_tibble() %>%
   mutate(hora = hour(FECHA)) %>%
   group_by(estacion, hora) %>%
   summarise(pm25 = mean(pm25, na.rm = TRUE), .groups = "drop") %>%
   ggplot(aes(hora, pm25, colour = estacion)) + geom_line()
 
-#Este gráfico de líneas muestra el perfil horario promedio 
+#Este grafico de lineas muestra el perfil horario promedio 
 #de las concentraciones de material particulado PM2.5 ($\mu g/m^3$) 
 #a lo largo de las 24 horas del día para cada una de las estaciones de monitoreo de la red de calidad del aire.
 
 
-#Estacionalidad Anual de la Concentración de PM2.5 por Estación de Monitoreo
+#Estacionalidad Anual de la Concentracion de PM2.5 por Estacion de Monitoreo
 pm25_mes %>%
   gg_season(pm25, period = "year") +
   facet_wrap(vars(estacion), ncol = 3, scales = "free_y") +
@@ -81,6 +81,6 @@ pm25_mes %>%
        title = "Estacionalidad anual del PM2.5 por estación") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-#Este gráfico de estacionalidad superpuesta (gg_season) permite comparar
+#Este grafico de estacionalidad superpuesta permite comparar
 #el ciclo anual de las concentraciones de material particulado PM2.5 ($\mu g/m^3$)
-#mes a mes, agrupando los datos por cada estación de monitoreo de la red de calidad del aire. 
+#mes a mes, agrupando los datos por cada estacion de monitoreo de la red de calidad del aire.  

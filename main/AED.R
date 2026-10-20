@@ -44,6 +44,13 @@ has_gaps(pm25_ts)      # TRUE esperado (hay huecos reales)
 pm25_ts %>% count_gaps() %>% arrange(desc(.n))   # los huecos más largos
 
 
+pm25_mes <- pm25_ts %>%
+  group_by_key() %>%
+  index_by(mes = yearmonth(FECHA)) %>%
+  summarise(n = sum(!is.na(pm25)), pm25 = mean(pm25, na.rm = TRUE)) %>%
+  mutate(cobertura = n / (days_in_month(as.Date(mes)) * 24),
+         pm25 = if_else(cobertura >= 0.75, pm25, NA_real_)) %>%
+  fill_gaps()
 
 #GRAFICOS
 #Evolución y Estacionalidad Mensual del PM2.5 por Estación de Monitoreo
